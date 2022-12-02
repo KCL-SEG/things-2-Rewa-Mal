@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
-from .forms import ThingForm
+from .forms import thing_form
 
 def home(request):
     if request.method == 'POST':
-        form = ThingForm(request.POST)
+        form = thing_form(request.POST)
         if form.is_valid():
             return redirect('home')
     else:
-        form = ThingForm()
+        form = thing_form()
 
     return render(request, 'home.html', {'form': form})
 
