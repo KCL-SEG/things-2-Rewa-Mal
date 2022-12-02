@@ -1,5 +1,5 @@
 from django.test import TestCase
-from things.forms import thing_form
+from things.forms import ThingForm
 from things.models import Thing
 from django.core.exceptions import ValidationError
 from django.urls import reverse
@@ -16,7 +16,7 @@ class ThingFormTestCase(TestCase):
         }
     
     def test_valid_form(self):
-        form = thing_form(data=self.input)
+        form = ThingForm(data=self.input)
         self.assertTrue(form.is_valid())
 
 class HomeViewTestCase(TestCase):
