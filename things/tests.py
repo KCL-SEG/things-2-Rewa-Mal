@@ -22,11 +22,18 @@ class ThingFormTestCase(TestCase):
 class HomeViewTestCase(TestCase):
     def setUp(self):
         self.url = reverse('home')
+    
+    def test_home_url(self):
+        self.assertEqual(reverse('home'), '/home/')
 
     def test_get_home_view(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'home.html')
+        form = response.context['form']
+        self.assertTrue(isinstance(form, ThingForm))
+        self.assertFalse(form.is_bound)
+
 
 class ThingsModelTestCase(TestCase):
 
